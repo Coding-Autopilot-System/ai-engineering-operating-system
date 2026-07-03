@@ -39,6 +39,8 @@ REQUIRED = [
     'docs/evaluations/README.md',
     'docs/local-runner/README.md',
     'docs/showcase/README.md',
+    'docs/adoption/README.md',
+    'docs/operations/README.md',
     'templates/README.md',
     'templates/complete-project-context.md',
     'templates/repository-context-template.md',
@@ -69,6 +71,8 @@ REQUIRED_MERMAID = [
     'docs/verifiers/README.md',
     'docs/evaluations/README.md',
     'docs/local-runner/README.md',
+    'docs/adoption/README.md',
+    'docs/operations/README.md',
     'wiki/Home.md',
 ]
 
