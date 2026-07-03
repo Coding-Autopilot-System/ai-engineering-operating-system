@@ -1,0 +1,42 @@
+name: sync-wiki
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'wiki/**'
+      - 'docs/wiki/**'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare wiki content
+        run: |
+          mkdir -p /tmp/ai-os-wiki
+          cp -R wiki/. /tmp/ai-os-wiki/
+          find /tmp/ai-os-wiki -type f -name '*.md' -print
+
+      - name: Push wiki pages
+        env:
+          TOKEN: ${{ secrets.WIKI_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git clone "https://x-access-token:${TOKEN}@github.com/${{ github.repository }}.wiki.git" /tmp/wiki-repo
+          rsync -av --delete /tmp/ai-os-wiki/ /tmp/wiki-repo/
+          cd /tmp/wiki-repo
+          git add .
+          if git diff --cached --quiet; then
+            echo "Wiki already up to date"
+          else
+            git commit -m "docs: sync wiki pages"
+            git push
+          fi
