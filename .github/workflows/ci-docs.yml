@@ -1,0 +1,23 @@
+name: ci-docs
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  docs-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify repository structure
+        run: python scripts/verify_repo.py
+      - name: Run structure tests
+        run: python -m pytest tests
