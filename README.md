@@ -4,7 +4,7 @@
 
 AI Engineering Operating System is a public methodology and documentation framework for turning AI coding agents into disciplined software engineering systems.
 
-It defines reusable SDLC loops, Mermaid diagrams, verification gates, model routing, memory rules, human approval checkpoints, and continuous improvement workflows for local-first AI development.
+It defines reusable SDLC loops, Mermaid diagrams, verification gates, model routing, memory rules, human review checkpoints, and continuous improvement workflows for local-first AI development.
 
 ## Why this exists
 
@@ -33,6 +33,8 @@ Most AI coding workflows still behave like ad-hoc chats. AI-OS turns that into a
 - [Prompt templates](prompts/README.md)
 - [ChatGPT web operating prompt](prompts/chatgpt-web.md)
 - [Evaluation framework](docs/evaluations/README.md)
+- [Completeness checklist](docs/completeness-checklist.md)
+- [Readiness status](docs/readiness-status.md)
 - [Wiki home](wiki/Home.md)
 
 ## Everyday prompt
