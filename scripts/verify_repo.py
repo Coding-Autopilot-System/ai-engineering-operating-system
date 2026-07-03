@@ -41,6 +41,9 @@ REQUIRED = [
     'docs/showcase/README.md',
     'docs/adoption/README.md',
     'docs/operations/README.md',
+    'docs/architecture/context-loading.md',
+    'docs/architecture/context-engineering.md',
+    'docs/prompts/quality.md',
     'templates/README.md',
     'templates/complete-project-context.md',
     'templates/repository-context-template.md',
@@ -73,6 +76,9 @@ REQUIRED_MERMAID = [
     'docs/local-runner/README.md',
     'docs/adoption/README.md',
     'docs/operations/README.md',
+    'docs/architecture/context-loading.md',
+    'docs/architecture/context-engineering.md',
+    'docs/prompts/quality.md',
     'wiki/Home.md',
 ]
 
