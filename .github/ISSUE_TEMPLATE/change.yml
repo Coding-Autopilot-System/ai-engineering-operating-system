@@ -1,0 +1,17 @@
+name: Change request
+description: Propose a controlled change to AI-OS
+title: "[Change]: "
+labels: ["change"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification
+    validations:
+      required: true
