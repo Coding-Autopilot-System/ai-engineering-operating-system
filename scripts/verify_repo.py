@@ -5,6 +5,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 REQUIRED = [
     'README.md',
+    'LICENSE',
     'CONTRIBUTING.md',
     'CODE_OF_CONDUCT.md',
     'SECURITY.md',
@@ -19,19 +20,35 @@ REQUIRED = [
     '.github/workflows/sync-wiki.yml',
     'docs/README.md',
     'docs/methodology/quickstart.md',
+    'docs/methodology/glossary.md',
+    'docs/methodology/anti-patterns.md',
     'docs/methodology/continuous-improvement-loop.md',
     'docs/methodology/definition-of-done.md',
     'docs/methodology/maturity-model.md',
     'docs/diagrams/README.md',
+    'docs/loops/README.md',
     'docs/loops/feature.md',
     'docs/loops/bugfix-loop.md',
+    'docs/loops/refactoring.md',
+    'docs/loops/pipeline-repair.md',
+    'docs/loops/iac.md',
+    'docs/loops/security.md',
+    'docs/loops/performance.md',
     'docs/loops/release.md',
     'docs/verifiers/README.md',
     'docs/evaluations/README.md',
+    'docs/local-runner/README.md',
+    'docs/showcase/README.md',
+    'templates/README.md',
+    'templates/project-context.md',
+    'templates/repository-context-template.md',
+    'templates/agent-instructions-template.md',
+    'prompts/README.md',
     'prompts/master-system-prompt.md',
     'prompts/chatgpt-web.md',
     'prompts/continuous-improvement.md',
     'wiki/Home.md',
+    'wiki/Architecture-Guide.md',
     'wiki/Loops.md',
     'wiki/Prompts.md',
     'wiki/Releases.md',
@@ -40,15 +57,22 @@ REQUIRED = [
 
 REQUIRED_MERMAID = [
     'AGENTS.md',
+    'templates/README.md',
+    'docs/methodology/quickstart.md',
+    'docs/methodology/anti-patterns.md',
     'docs/methodology/continuous-improvement-loop.md',
     'docs/methodology/definition-of-done.md',
     'docs/methodology/maturity-model.md',
     'docs/diagrams/README.md',
     'docs/loops/feature.md',
     'docs/loops/release.md',
+    'docs/verifiers/README.md',
+    'docs/evaluations/README.md',
+    'docs/local-runner/README.md',
     'wiki/Home.md',
 ]
 
+FORBIDDEN_TEXT = ['TBD', 'TODO', 'FIXME', 'placeholder']
 LINK_RE = re.compile(r'\[[^\]]+\]\(([^)]+)\)')
 SKIP_PREFIXES = ('http://', 'https://', 'mailto:', '#')
 
@@ -77,6 +101,14 @@ for p in REQUIRED_MERMAID:
     if '```mermaid' not in (ROOT / p).read_text(encoding='utf-8'):
         without_mermaid.append(p)
 fail('Required diagram docs without Mermaid:', without_mermaid)
+
+forbidden_hits = []
+for md in markdown:
+    text = md.read_text(encoding='utf-8')
+    for token in FORBIDDEN_TEXT:
+        if token.lower() in text.lower():
+            forbidden_hits.append(f'{md.relative_to(ROOT)} contains {token}')
+fail('Forbidden placeholder text found:', forbidden_hits)
 
 broken_links = []
 for md in markdown:
