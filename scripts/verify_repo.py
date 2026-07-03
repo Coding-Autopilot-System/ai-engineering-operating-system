@@ -44,6 +44,7 @@ REQUIRED = [
     'docs/architecture/context-loading.md',
     'docs/architecture/context-engineering.md',
     'docs/prompts/quality.md',
+    'docs/quality-system/README.md',
     'templates/README.md',
     'templates/complete-project-context.md',
     'templates/repository-context-template.md',
@@ -79,6 +80,7 @@ REQUIRED_MERMAID = [
     'docs/architecture/context-loading.md',
     'docs/architecture/context-engineering.md',
     'docs/prompts/quality.md',
+    'docs/quality-system/README.md',
     'wiki/Home.md',
 ]
 
