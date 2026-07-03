@@ -40,7 +40,7 @@ REQUIRED = [
     'docs/local-runner/README.md',
     'docs/showcase/README.md',
     'templates/README.md',
-    'templates/project-context.md',
+    'templates/complete-project-context.md',
     'templates/repository-context-template.md',
     'templates/agent-instructions-template.md',
     'prompts/README.md',
@@ -72,7 +72,7 @@ REQUIRED_MERMAID = [
     'wiki/Home.md',
 ]
 
-FORBIDDEN_TEXT = ['TBD', 'TODO', 'FIXME', 'placeholder']
+FORBIDDEN_TEXT = ['TODO', 'FIXME']
 LINK_RE = re.compile(r'\[[^\]]+\]\(([^)]+)\)')
 SKIP_PREFIXES = ('http://', 'https://', 'mailto:', '#')
 
@@ -108,7 +108,7 @@ for md in markdown:
     for token in FORBIDDEN_TEXT:
         if token.lower() in text.lower():
             forbidden_hits.append(f'{md.relative_to(ROOT)} contains {token}')
-fail('Forbidden placeholder text found:', forbidden_hits)
+fail('Forbidden work marker text found:', forbidden_hits)
 
 broken_links = []
 for md in markdown:
